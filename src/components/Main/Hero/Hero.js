@@ -11,7 +11,7 @@ export const Hero = () => {
                     <p className="mt-2 text-highlight">
                         Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et
                     </p>
-                    <button className="mt-6 px-6 py-2 bg-secondary text-primary rounded-[16px] hover:bg-secondary">
+                    <button className="mt-6 px-6 py-2 bg-secondary text-primary rounded-[16px] hover:bg-secondary text-[16px] font-karla">
                         Reserve a table
                     </button>
                 </div>
