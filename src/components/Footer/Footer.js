@@ -7,14 +7,14 @@ import { FaTwitter, FaFacebookF, FaYoutube } from "react-icons/fa";
 export function Footer() {
   return (
     <footer className="bg-[#94ba43] text-primary py-8">
-      <div className="max-w-[80%] mx-auto grid grid-cols-1 md:grid-cols-4 gap-6">
+      <div className="max-w-[60%] mx-auto grid grid-cols-1 md:grid-cols-4 gap-6">
         {/* Logo Section */}
         <div>
           <NavLink to="/">
             <img
-              src={images['Logo']}
+              src={images['restaurant']}
               alt="Little Lemon Logo"
-              className="h-10"
+              className="w-full max-w-[300px] h-full max-h-[300px] object-cover rounded-[16px] mr-6"
             />
           </NavLink>
         </div>
