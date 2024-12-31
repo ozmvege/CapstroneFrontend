@@ -6,6 +6,7 @@ import { Footer } from './components/Footer/Footer';
 import { Layout } from './components/Layout/Layout';
 import { Main } from './components/Main/Main';
 import { ReservationPage } from './components/Reservation/Reservation';
+import { OrderOnline } from './components/OrderOnline/OrderOnline';
 
 function App() {
   const [showNavbar, setShowNavbar] = useState(true);
@@ -48,6 +49,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/Reservations" element={<ReservationPage />} />
+        <Route path="/OrderOnline" element={<OrderOnline />}/>
       </Routes>
       <Footer />
     </Layout>
