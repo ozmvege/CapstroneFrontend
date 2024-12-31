@@ -30,16 +30,16 @@ export const ReservationPage = () => {
     };
 
     return (
-        <section className="h-screen bg-primary flex items-center justify-center">
-            <div className="w-full max-w-[500px] bg-primary p-8 rounded-lg shadow-lg">
-                <h2 className="text-3xl font-bold mb-8 text-center text-highlight font-markazi">
+        <section className="h-screen bg-[#333333] flex items-center justify-center">
+            <div className="w-full max-w-[90%] sm:max-w-[500px] bg-primary p-8 rounded-[16px] shadow-lg">
+                <h2 className="text-3xl font-bold mb-8 text-center text-highlight font-markazi rounded-[16px]">
                     Make a Reservation
                 </h2>
                 <Formik
                     initialValues={initialValues}
                     validationSchema={validationSchema}
                     onSubmit={onSubmit}
-                >
+                    >
                     {({ isValid, dirty }) => (
                         <Form className="grid gap-6">
                             {/* Date Selection */}
