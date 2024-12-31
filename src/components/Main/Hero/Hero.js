@@ -7,15 +7,14 @@ export const Hero = () => {
                 {/* Left Content */}
                 <div className="my-6">
                     <h2 className="text-[40px] font-markazi text-secondary">Little Lemon</h2>
-                    <h4 className="text-[24px] mt-2 font-markazi text-highlight">Chicago</h4>
-                    <p className="mt-2 text-highlight">
+                    <h4 className="text-[24px] font-markazi text-highlight">Chicago</h4>
+                    <p className="mt-4 text-highlight">
                         Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et
                     </p>
-                    <button className="mt-6 px-6 py-2 bg-secondary text-primary rounded-[16px] hover:bg-secondary text-[16px] font-karla">
+                    <button className="mt-6 px-6 py-2 bg-secondary text-primary rounded-[16px] hover:bg-highlight text-[16px] font-karla">
                         Reserve a table
                     </button>
                 </div>
-
                 {/* Right Image */}
                 <div className="flex justify-center items-center my-6">
                     <img

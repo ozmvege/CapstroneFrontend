@@ -36,13 +36,13 @@ export const Testimonials = () => {
 
     return (
         <section className="bg-primary py-10">
-            <div className="max-w-[80%] lg:max-w-[40%] mx-auto">
+            <div className="max-w-[80%] lg:max-w-[30%] mx-auto">
                 <h2 className="text-center text-4xl font-bold text-secondary mb-8">Testimonials</h2>
                 <Slider {...settings}>
                     {testimonials.map((testimonial, index) => (
                         <div
                             key={index}
-                            className="p-6 bg-white rounded-lg shadow-lg flex flex-col items-center text-center"
+                            className="p-6 bg-white rounded-[16px] shadow-lg flex flex-col items-center text-center"
                         >
                             {/* Image */}
                             <img

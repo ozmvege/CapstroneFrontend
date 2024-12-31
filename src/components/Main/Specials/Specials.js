@@ -26,9 +26,9 @@ export const Specials = () => {
         <section className="bg-primary py-8">
             <div className="max-w-[60%] mx-auto flex justify-between items-center mb-6">
                 <h1 className="font-markazi text-[40px] text-secondary">Specials</h1>
-                <button className="px-6 py-2 bg-secondary text-primary text-lg font-bold rounded-[16px] hover:bg-yellow-500">
+                <h1 className="px-6 py-2 bg-secondary text-primary text-lg font-bold rounded-[16px]">
                     Online Menu
-                </button>
+                </h1>
             </div>
 
             <div className="max-w-[60%] mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -46,11 +46,11 @@ export const Specials = () => {
 
                         {/* Card Content */}
                         <div className="p-4 flex flex-col flex-grow">
-                            <h3 className="text-xl font-bold text-primary mb-2">{item.name}</h3>
-                            <p className="text-gray-600 flex-grow">{item.description}</p>
+                            <h3 className="text-[18px] font-bold font-markazi text-primary mb-2">{item.name}</h3>
+                            <p className="text-primary font-karla flex-grow">{item.description}</p>
                             <div className="mt-4 flex justify-between items-center">
                                 <span className="text-lg font-semibold text-secondary">{item.price}</span>
-                                <button className="px-4 py-2 bg-primary text-white rounded-[16px] hover:bg-secondary">
+                                <button className="px-4 py-2 bg-primary text-secondary  font-markazi rounded-[16px] hover:bg-highlight">
                                     Order Now
                                 </button>
                             </div>
