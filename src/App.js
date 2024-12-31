@@ -54,7 +54,7 @@ function App() {
           path="/Reservations"
           element={<ReservationPage handleFormSubmit={submitForm} />}
         />
-        <Route path="/order-online" element={<OrderOnline />} />
+        <Route path="/OrderOnline" element={<OrderOnline />} />
         <Route path="/confirmed-booking" element={<ConfirmedBooking />} />
       </Routes>
       <Footer />
