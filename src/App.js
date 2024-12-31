@@ -1,14 +1,54 @@
+import React, { useState, useEffect, useCallback } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import './App.css';
 import { Navbar } from './components/Navbar/Navbar';
 import { Footer } from './components/Footer/Footer';
-import React from 'react';
+import { Layout } from './components/Layout/Layout';
+import { Main } from './components/Main/Main';
 
 function App() {
+  const [showNavbar, setShowNavbar] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  // Use useCallback to ensure handleScroll doesn't change between renders
+  const handleScroll = useCallback(() => {
+    const currentScrollY = window.scrollY;
+
+    if (currentScrollY > lastScrollY && currentScrollY > 100) {
+      // Scrolling down
+      setShowNavbar(false);
+    } else {
+      // Scrolling up
+      setShowNavbar(true);
+    }
+
+    setLastScrollY(currentScrollY);
+  }, [lastScrollY]);
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [handleScroll]);
+
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [handleScroll]);
+
   return (
-      <>
-        <Navbar />
-        <Footer />
-      </>
+    <Layout>
+      <Navbar showNavbar={showNavbar} />
+      <Routes>
+        <Route path="/" element={<Main />} />
+      </Routes>
+      <Footer />
+    </Layout>
   );
 }
 
