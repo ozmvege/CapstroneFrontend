@@ -1,8 +1,10 @@
-import React from "react";
+/* global fetchAPI, submitAPI */
+
+import React, { useState, useEffect } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-
-export const ReservationPage = () => {
+import { submitAPI, fetchAPI } from "../../utilities/api";
+export const ReservationPage = ({ handleFormSubmit }) => {
     // Validation schema using Yup
     const validationSchema = Yup.object({
         resDate: Yup.string().required("Please choose a date"),
@@ -14,6 +16,23 @@ export const ReservationPage = () => {
         occasion: Yup.string().required("Please choose an occasion"),
     });
 
+    const [availableTimes, setAvailableTimes] = useState([]);
+
+    // Initialize times for today's date
+    useEffect(() => {
+        const today = new Date(); // Create a Date object for today
+        const times = fetchAPI(today); // Pass the Date object to fetchAPI
+        setAvailableTimes(times);
+    }, []);
+
+    // Update available times based on date changes
+    const handleDateChange = (dateString) => {
+        const date = new Date(dateString); // Convert dateString to a Date object
+        const times = fetchAPI(date); // Pass the Date object to fetchAPI
+        setAvailableTimes(times);
+    };
+
+
     // Initial values for the form
     const initialValues = {
         resDate: "",
@@ -22,12 +41,6 @@ export const ReservationPage = () => {
         occasion: "",
     };
 
-    // Form submission handler
-    const onSubmit = (values, { resetForm }) => {
-        console.log("Form Data: ", values);
-        alert("Reservation successfully submitted!");
-        resetForm();
-    };
 
     return (
         <section className="h-screen bg-[#333333] flex items-center justify-center">
@@ -38,9 +51,9 @@ export const ReservationPage = () => {
                 <Formik
                     initialValues={initialValues}
                     validationSchema={validationSchema}
-                    onSubmit={onSubmit}
-                    >
-                    {({ isValid, dirty }) => (
+                    onSubmit={handleFormSubmit}
+                >
+                    {({ isValid, dirty, setFieldValue }) => (
                         <Form className="grid gap-6">
                             {/* Date Selection */}
                             <label htmlFor="resDate" className="font-semibold font-karla text-lg text-highlight">
@@ -51,6 +64,10 @@ export const ReservationPage = () => {
                                 id="resDate"
                                 name="resDate"
                                 className="border border-gray-300 p-3 text-lg rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+                                onChange={(e) => {
+                                    setFieldValue("resDate", e.target.value);
+                                    handleDateChange(e.target.value); // Update available times
+                                }}
                             />
                             <ErrorMessage
                                 name="resDate"
@@ -69,12 +86,17 @@ export const ReservationPage = () => {
                                 className="border border-gray-300 p-3 text-lg rounded-[16px] focus:outline-none focus:ring-2 focus:ring-primary"
                             >
                                 <option value="">Select time</option>
-                                <option value="17:00">17:00</option>
-                                <option value="18:00">18:00</option>
-                                <option value="19:00">19:00</option>
-                                <option value="20:00">20:00</option>
-                                <option value="21:00">21:00</option>
-                                <option value="22:00">22:00</option>
+                                {availableTimes.length === 0 ? (
+                                    <option value="" disabled>
+                                        No times available
+                                    </option>
+                                ) : (
+                                    availableTimes.map((time) => (
+                                        <option key={time} value={time}>
+                                            {time}
+                                        </option>
+                                    ))
+                                )}
                             </Field>
                             <ErrorMessage
                                 name="resTime"
@@ -124,7 +146,7 @@ export const ReservationPage = () => {
                             {/* Submit Button */}
                             <button
                                 type="submit"
-                                disabled={!isValid || !dirty} // Disable if the form is invalid or untouched
+                                disabled={!isValid || !dirty}
                                 className={`p-3 text-lg rounded-md transition-colors ${
                                     isValid && dirty
                                         ? "bg-primary text-white hover:bg-secondary cursor-pointer"
